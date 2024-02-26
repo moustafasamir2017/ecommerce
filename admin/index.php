@@ -3,10 +3,14 @@
 <?php include 'includes/languages/english.php'; ?>
 <?php //include 'includes/languages/arabic.php'; ?>
 
+<?php //echo lang('MESSAGE').' '.lang('ADMIN'); ?>
 
-<?php echo lang('MESSAGE').' '.lang('ADMIN'); ?>
 
-<button class="btn btn-danger">asd</button>
-<i class="fa fa-home fa-2x"></i>
+<form class="login text-center">
+<h4>Admin Login</h4>
+<input class="form-control" type="text" name="user" placeholder="Username" autocomplete="off">
+<input class="form-control" type="password" name="pass" placeholder="Password" autocomplete="new-password">
+<input class="btn btn-primary" type="submit" value="login">
+</form>
 
 <?php include $tpl.'footer.php'; ?>
