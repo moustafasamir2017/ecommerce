@@ -1,3 +1,11 @@
+<?php
+
+session_start();
+if(isset($_SESSION['Username'])){
+    header('Location: dashboard.php');
+}
+
+?>
 <?php include "init.php"; ?>
 <?php include $tpl.'header.php'; ?>
 <?php include 'includes/languages/english.php'; ?>
@@ -6,6 +14,7 @@
 <?php //echo lang('MESSAGE').' '.lang('ADMIN'); ?>
 
 <?php  
+
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
@@ -19,6 +28,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $stmt->execute(array($username,$hashedPass));
     $count = $stmt->rowCount();
     if($count > 0){
+        $_SESSION['Username'] = $username;
+        header('Location: dashboard.php');
+        exit();
         echo 'welcome '.$username;
     }
 }
