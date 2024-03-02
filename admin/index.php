@@ -1,14 +1,15 @@
 <?php
 
 session_start();
+$noNavbar = '';
 if(isset($_SESSION['Username'])){
     header('Location: dashboard.php');
 }
 
 ?>
 <?php include "init.php"; ?>
-<?php include $tpl.'header.php'; ?>
-<?php include 'includes/languages/english.php'; ?>
+<?php //include $tpl.'header.php'; ?>
+<?php //include 'includes/languages/english.php'; ?>
 <?php //include 'includes/languages/arabic.php'; ?>
 
 <?php //echo lang('MESSAGE').' '.lang('ADMIN'); ?>
