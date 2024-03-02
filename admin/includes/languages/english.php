@@ -2,8 +2,10 @@
 
 function lang($phrase){
     static $lang = array(
-        'MESSAGE' => 'Welcome',
-        'ADMIN' => 'Administrator',
+        // Dashboard strings
+        'DASHBOARD_ADMIN' => 'Dashboard',
+        'HOME_ADMIN' => 'Home',
+        'CATEGORIES' => 'Categories',
     );
     return $lang[$phrase];
 }
