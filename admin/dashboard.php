@@ -10,5 +10,5 @@ if(isset($_SESSION['Username'])){
 
 }else{
     echo "you are not auth <br>";
-    echo "<a href='/osama/ecommerce/admin/'>Login</a>";
+    echo "<a href='/ecommerce/admin/'>Login</a>";
 }
