@@ -16,3 +16,4 @@ Progress Videos :
 14- Done Dashboard Bootstrap Navbar & No navbar    
 15- Done Styles css --skipped  
 16- Done split page with get  
+17- Done Logout page with session  
