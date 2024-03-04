@@ -15,3 +15,4 @@ Progress Videos :
 13- Done session and login  
 14- Done Dashboard Bootstrap Navbar & No navbar    
 15- Done Styles css --skipped  
+16- Done split page with get  
