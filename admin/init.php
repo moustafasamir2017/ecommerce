@@ -8,9 +8,10 @@ $tpl = 'includes/templates/';
 $css = 'layout/css/';
 $js = 'layout/js/';
 $lang = 'includes/languages/';
+$fun = 'includes/functions/';
 
 // important files
-
+include $fun.'functions.php';
 include $lang.'english.php'; 
 //include 'includes/languages/arabic.php'; 
 include $tpl.'header.php'; 
