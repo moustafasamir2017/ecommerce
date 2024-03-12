@@ -26,11 +26,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     // echo $username . ' - '.$hashedPass;
 
-    $stmt = $con->prepare("SELECT Username, Password FROM users WHERE Username = ? AND Password = ? AND GroupID = 1");
+    $stmt = $con->prepare("SELECT UserID, Username, Password FROM users WHERE Username = ? AND Password = ? AND GroupID = 1 LIMIT 1");
     $stmt->execute(array($username,$hashedPass));
+    $row = $stmt->fetch();
     $count = $stmt->rowCount();
     if($count > 0){
-        $_SESSION['Username'] = $username;
+        $_SESSION['Username'] = $username; // register session name
+        $_SESSION['ID'] = $row['UserID']; // register session id
         header('Location: dashboard.php');
         exit();
         echo 'welcome '.$username;
