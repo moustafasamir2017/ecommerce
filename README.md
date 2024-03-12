@@ -17,3 +17,4 @@ Progress Videos :
 15- Done Styles css --skipped  
 16- Done split page with get  
 17- Done Logout page with session  
+18- Done functions file  
