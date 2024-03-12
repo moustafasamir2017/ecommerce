@@ -19,3 +19,5 @@ Progress Videos :
 17- Done Logout page with session  
 18- Done functions file  
 19- Done members page & start edit page  
+20- Done Design edit page  
+21- Done deal with edit request and show form edit if id exist  
