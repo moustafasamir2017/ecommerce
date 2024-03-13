@@ -50,7 +50,8 @@ if(isset($_SESSION['Username'])){
                         <div class="form-group form-group-lg">
                             <label class="form-label">Password</label>
                             <div class="col-sm-10">
-                                <input type="password" name="password"  class="form-control" autocomplete="new-password">
+                                <input type="hidden" name="oldpassword" value="<?= $row['Password']; ?>">
+                                <input type="password" name="newpassword"  class="form-control" autocomplete="new-password">
                             </div>
                         </div>
                         <div class="form-group form-group-lg">
@@ -91,10 +92,18 @@ if(isset($_SESSION['Username'])){
             $email = $_POST['email'];
             $name = $_POST['fullname'];
 
+            // password trick
+
+            if(empty($_POST['newpassword'])){
+                $pass = $_POST['oldpassword'];
+            }else{
+                $pass = sha1($_POST['newpassword']);
+            }
+
             // echo $id.' '.$user.' '.$email.' '.$name;
             // Udate Database
-            $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? WHERE UserID = ?");
-            $stmt->execute(array($user,$email,$name,$id));
+            $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? , Password = ? WHERE UserID = ?");
+            $stmt->execute(array($user,$email,$name,$pass,$id));
 
             echo $stmt->rowCount(). ' - Recored Updated';
 
