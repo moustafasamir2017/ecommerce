@@ -23,3 +23,5 @@ Progress Videos :
 21- Done deal with edit request and show form edit if id exist  
 22- Done update record at database with form method post  
 23- Done change password and update  
+24- Done validate form by php  
+25- Done validate form php and js and update records

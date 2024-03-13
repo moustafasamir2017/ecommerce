@@ -43,27 +43,27 @@ if(isset($_SESSION['Username'])){
                     <div class="row g-3">
                         <div class="form-group form-group-lg">
                             <label class="form-label">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="username" value="<?= $row['Username']; ?>" class="form-control" autocomplete="off">
+                            <div class="col-sm-10 position-relative">
+                                <input type="text" name="username" value="<?= $row['Username']; ?>" class="form-control" autocomplete="off" required="required">
                             </div>
                         </div>
                         <div class="form-group form-group-lg">
                             <label class="form-label">Password</label>
-                            <div class="col-sm-10">
+                            <div class="col-sm-10 position-relative">
                                 <input type="hidden" name="oldpassword" value="<?= $row['Password']; ?>">
-                                <input type="password" name="newpassword"  class="form-control" autocomplete="new-password">
+                                <input type="password" name="newpassword" placeholder="Leave Blank If U Won't Change"  class="form-control" autocomplete="new-password">
                             </div>
                         </div>
                         <div class="form-group form-group-lg">
                             <label class="form-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" name="email" value="<?= $row['Email']; ?>" class="form-control" autocomplete="off">
+                            <div class="col-sm-10 position-relative">
+                                <input type="email" name="email" value="<?= $row['Email']; ?>" class="form-control" autocomplete="off" required="required">
                             </div>
                         </div>
                         <div class="form-group form-group-lg">
                             <label class="form-label">Full Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="fullname" value="<?= $row['FullName']; ?>" class="form-control" autocomplete="off">
+                            <div class="col-sm-10 position-relative">
+                                <input type="text" name="fullname" value="<?= $row['FullName']; ?>" class="form-control" autocomplete="off" required="required">
                             </div>
                         </div>
                         <div class="form-group form-group-lg">
@@ -85,6 +85,7 @@ if(isset($_SESSION['Username'])){
     <?php }elseif($do == 'update'){
 
         echo "<h1 class='text-center'>Update Member</h1>";
+        echo "<div class='container'>";
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             // Get Variables from form
             $id = $_POST['userid'];
@@ -94,22 +95,44 @@ if(isset($_SESSION['Username'])){
 
             // password trick
 
-            if(empty($_POST['newpassword'])){
-                $pass = $_POST['oldpassword'];
-            }else{
-                $pass = sha1($_POST['newpassword']);
+            $pass = empty($_POST['newpassword']) ? $_POST['oldpassword'] : sha1($_POST['newpassword']);  
+
+            // validate the form
+            $formErrors = array();
+            if(empty($user)){
+                $formErrors[] = "<div class='alert alert-danger'>username cannot be empty</div>"; 
+                // echo "<div class='alert alert-danger'>username cannot be empty</div>";
+            }
+            if(strlen($user) < 4){
+                $formErrors[] = "<div class='alert alert-danger'>username cannot be less than 4 char</div>";
+            }
+            if(strlen($user) > 20){
+                $formErrors[] = "<div class='alert alert-danger'>username cannot be more than 20 char</div>";
+            }
+            if(empty($name)){
+                $formErrors[] = "<div class='alert alert-danger'>name cannot be empty</div>";
+            }
+            if(empty($email)){
+                $formErrors[] = "<div class='alert alert-danger'>email cannot be empty</div>";
+            }
+            foreach($formErrors as $error){
+                echo $error;
             }
 
-            // echo $id.' '.$user.' '.$email.' '.$name;
-            // Udate Database
-            $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? , Password = ? WHERE UserID = ?");
-            $stmt->execute(array($user,$email,$name,$pass,$id));
+            // if no errors then process to update
+            if(empty($formErrors)){
+                // Udate Database
+                $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? , Password = ? WHERE UserID = ?");
+                $stmt->execute(array($user,$email,$name,$pass,$id));
 
-            echo $stmt->rowCount(). ' - Recored Updated';
+                echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Updated' . "</div>";
+            }
 
         }else{
             echo "You Can't view page directly";
         }
+
+        echo "</div>";
 
     }
 
