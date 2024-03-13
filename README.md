@@ -21,3 +21,4 @@ Progress Videos :
 19- Done members page & start edit page  
 20- Done Design edit page  
 21- Done deal with edit request and show form edit if id exist  
+22- Done update record at database with form method post  

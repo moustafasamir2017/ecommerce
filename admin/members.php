@@ -38,7 +38,8 @@ if(isset($_SESSION['Username'])){
             if($count > 0){ ?> 
             <h1 class="text-center mt-5">Edit Member</h1>
             <div class="container">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="?do=update" method="POST">
+                    <input type="hidden" name="userid" value="<?= $userid; ?>" >
                     <div class="row g-3">
                         <div class="form-group form-group-lg">
                             <label class="form-label">Username</label>
@@ -80,7 +81,28 @@ if(isset($_SESSION['Username'])){
             }
             ?>
 
-    <?php }
+    <?php }elseif($do == 'update'){
+
+        echo "<h1 class='text-center'>Update Member</h1>";
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            // Get Variables from form
+            $id = $_POST['userid'];
+            $user = $_POST['username'];
+            $email = $_POST['email'];
+            $name = $_POST['fullname'];
+
+            // echo $id.' '.$user.' '.$email.' '.$name;
+            // Udate Database
+            $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? WHERE UserID = ?");
+            $stmt->execute(array($user,$email,$name,$id));
+
+            echo $stmt->rowCount(). ' - Recored Updated';
+
+        }else{
+            echo "You Can't view page directly";
+        }
+
+    }
 
 /** End Page Code */
 
