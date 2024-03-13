@@ -9,4 +9,12 @@ $(function(){
         $(this).attr('placeholder',$(this).attr('data-text'));
     });
 
+    // Add Aserisk on required field
+
+    $('input').each(function(){
+        if( $(this).attr('required') == 'required' ){
+            $(this).after('<span class="aserisk">*</span>');
+        }
+    });
+
 });

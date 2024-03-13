@@ -13,3 +13,9 @@ body{background-color: #f4f4f4;}
 .login .btn{
     background-color: #008ddd;
 }
+
+.form-control{position: relative;}
+.aserisk{
+    position: absolute;right: 20px;
+    top: 10px;color: red;
+}
