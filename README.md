@@ -24,4 +24,5 @@ Progress Videos :
 22- Done update record at database with form method post  
 23- Done change password and update  
 24- Done validate form by php  
-25- Done validate form php and js and update records
+25- Done validate form php and js and update records  
+26- Done Memers for add new member  
