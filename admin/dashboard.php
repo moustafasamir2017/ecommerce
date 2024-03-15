@@ -7,9 +7,9 @@ if(isset($_SESSION['Username'])){
 
     include 'init.php';
 
-    echo "welcome " . $_SESSION['Username'];
-    print_r('<br>');
-    print_r($_SESSION);
+    // echo "welcome " . $_SESSION['Username'];
+    // print_r('<br>');
+    // print_r($_SESSION);
 
     include $tpl.'footer.php';
 

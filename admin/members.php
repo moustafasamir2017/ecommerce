@@ -20,7 +20,53 @@ if(isset($_SESSION['Username'])){
     $do = isset($_GET['do']) ? $_GET['do'] : 'Manage' ;
     
     if($do == 'Manage'){
-       
+       echo "Members manage";
+       echo "<br>";
+       echo "<a href='members.php?do=Add'>Add New Member</a>";
+    }elseif($do == 'Add'){ ?>
+
+            <h1 class="text-center mt-5">Add New Member</h1>
+            <div class="container">
+                <form class="form-horizontal" action="?do=Insert" method="POST">
+                    <!-- <input type="hidden" name="userid" value="<?= $userid; ?>" > -->
+                    <div class="row g-3">
+                        <div class="form-group form-group-lg">
+                            <label class="form-label">Username</label>
+                            <div class="col-sm-10 position-relative">
+                                <input type="text" name="username" placeholder="Username to login to shop" class="form-control" autocomplete="off" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="form-label">Password</label>
+                            <div class="col-sm-10 position-relative">
+                                <input type="password" name="password" placeholder="Password must be hard and complex"  class="form-control" autocomplete="new-password" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="form-label">Email</label>
+                            <div class="col-sm-10 position-relative">
+                                <input type="email" name="email" placeholder="Email must be valid" class="form-control" autocomplete="off" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <label class="form-label">Full Name</label>
+                            <div class="col-sm-10 position-relative">
+                                <input type="text" name="fullname" placeholder="Fullname appear in profile page" class="form-control" autocomplete="off" required="required">
+                            </div>
+                        </div>
+                        <div class="form-group form-group-lg">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <input type="submit" value="Add Member" class="btn btn-primary btn-lg">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+    <?php }elseif($do == 'Insert'){
+
+        echo $_POST['username'] . $_POST['password'] .$_POST['email'] .$_POST['fullname'];
+
     }elseif($do == 'Edit'){ ?>
 
         <?php 
