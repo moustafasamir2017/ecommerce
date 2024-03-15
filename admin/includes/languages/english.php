@@ -6,6 +6,7 @@ function lang($phrase){
         'DASHBOARD_ADMIN' => 'Dashboard',
         'HOME_ADMIN' => 'Home',
         'CATEGORIES' => 'Categories',
+        'MEMBERS' => 'Members',
     );
     return $lang[$phrase];
 }
