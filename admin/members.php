@@ -40,6 +40,7 @@ if(isset($_SESSION['Username'])){
                             <label class="form-label">Password</label>
                             <div class="col-sm-10 position-relative">
                                 <input type="password" name="password" placeholder="Password must be hard and complex"  class="form-control" autocomplete="new-password" required="required">
+                                <i class="show-pass fa fa-eye fa-2x"></i>
                             </div>
                         </div>
                         <div class="form-group form-group-lg">
@@ -65,7 +66,61 @@ if(isset($_SESSION['Username'])){
 
     <?php }elseif($do == 'Insert'){
 
-        echo $_POST['username'] . $_POST['password'] .$_POST['email'] .$_POST['fullname'];
+
+            if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+                echo "<h1 class='text-center'>Insert Member</h1>";
+                echo "<div class='container'>";
+
+                // Get Variables from form
+                $user = $_POST['username'];
+                // for check pass empty or not
+                $pass = $_POST['password'];
+                $email = $_POST['email'];
+                $name = $_POST['fullname'];
+
+                // for insertion only
+                $hashPass = sha1($_POST['password']);
+
+                // validate the form
+                $formErrors = array();
+                if(empty($user)){
+                    $formErrors[] = "username cannot be empty"; 
+                    // echo "<div class='alert alert-danger'>username cannot be empty</div>";
+                }
+                if(strlen($user) < 4){
+                    $formErrors[] = "username cannot be less than 4 char";
+                }
+                if(strlen($user) > 20){
+                    $formErrors[] = "username cannot be more than 20 char";
+                }
+                if(empty($pass)){
+                    $formErrors[] = "password cannot be empty";
+                }
+                if(empty($name)){
+                    $formErrors[] = "name cannot be empty";
+                }
+                if(empty($email)){
+                    $formErrors[] = "email cannot be empty";
+                }
+                foreach($formErrors as $error){
+                    echo "<div class='alert alert-danger'>".$error."</div>";
+                }
+
+                // if no errors then process to update
+                if(empty($formErrors)){
+                    // insert user info Database
+                    $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? , Password = ? WHERE UserID = ?");
+                    $stmt->execute(array($user,$email,$name,$pass,$id));
+
+                    echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Inserted' . "</div>";
+                }
+
+            }else{
+                echo "You Can't view page directly";
+            }
+
+            echo "</div>";
 
     }elseif($do == 'Edit'){ ?>
 
@@ -146,23 +201,23 @@ if(isset($_SESSION['Username'])){
             // validate the form
             $formErrors = array();
             if(empty($user)){
-                $formErrors[] = "<div class='alert alert-danger'>username cannot be empty</div>"; 
+                $formErrors[] = "username cannot be empty"; 
                 // echo "<div class='alert alert-danger'>username cannot be empty</div>";
             }
             if(strlen($user) < 4){
-                $formErrors[] = "<div class='alert alert-danger'>username cannot be less than 4 char</div>";
+                $formErrors[] = "username cannot be less than 4 char";
             }
             if(strlen($user) > 20){
-                $formErrors[] = "<div class='alert alert-danger'>username cannot be more than 20 char</div>";
+                $formErrors[] = "username cannot be more than 20 char";
             }
             if(empty($name)){
-                $formErrors[] = "<div class='alert alert-danger'>name cannot be empty</div>";
+                $formErrors[] = "name cannot be empty";
             }
             if(empty($email)){
-                $formErrors[] = "<div class='alert alert-danger'>email cannot be empty</div>";
+                $formErrors[] = "email cannot be empty";
             }
             foreach($formErrors as $error){
-                echo $error;
+                echo "<div class='alert alert-danger'>".$error."</div>";
             }
 
             // if no errors then process to update

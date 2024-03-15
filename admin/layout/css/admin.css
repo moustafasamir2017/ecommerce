@@ -19,3 +19,10 @@ body{background-color: #f4f4f4;}
     position: absolute;right: 20px;
     top: 10px;color: red;
 }
+
+.show-pass {
+    position: absolute;
+    top: 9px;
+    right: 35px;
+    font-size: 20px;
+}
