@@ -26,3 +26,4 @@ Progress Videos :
 24- Done validate form by php  
 25- Done validate form php and js and update records  
 26- Done Memers for add new member  
+27- Done Memers add new member complete form and js & insert condition  
