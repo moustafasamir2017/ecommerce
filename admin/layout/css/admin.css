@@ -26,3 +26,9 @@ body{background-color: #f4f4f4;}
     right: 35px;
     font-size: 20px;
 }
+
+.main-table tr:first-child td{
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+}
