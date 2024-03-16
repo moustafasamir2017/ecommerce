@@ -110,8 +110,8 @@ if(isset($_SESSION['Username'])){
                 // if no errors then process to update
                 if(empty($formErrors)){
                     // insert user info Database
-                    $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? , Password = ? WHERE UserID = ?");
-                    $stmt->execute(array($user,$email,$name,$pass,$id));
+                    $stmt = $con->prepare("INSERT INTO users(Username,Password,Email,FullName) VALUES(:v_user,:v_pass,:v_mail,:v_name) ");
+                    $stmt->execute(array('v_user' => $user,'v_pass' => $hashPass,'v_mail' => $email,'v_name' => $name));
 
                     echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Inserted' . "</div>";
                 }
