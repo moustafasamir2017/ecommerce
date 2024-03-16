@@ -19,11 +19,36 @@ if(isset($_SESSION['Username'])){
 /** Begin Page Code */
     $do = isset($_GET['do']) ? $_GET['do'] : 'Manage' ;
     
-    if($do == 'Manage'){
-       echo "Members manage";
-       echo "<br>";
-       echo "<a href='members.php?do=Add'>Add New Member</a>";
-    }elseif($do == 'Add'){ ?>
+    if($do == 'Manage'){ ?>
+        <h1 class="text-center">Manage Members</h1>
+        <div class="container">
+            <a href='members.php?do=Add' class="btn btn-primary"><i class="fa fa-plus"></i>Add New Member</a>
+            <div class="table-responsive">
+                <table class="main-table text-center table table-bordered">
+                    <tr>
+                        <td>#ID</td>
+                        <td>Username</td>
+                        <td>Email</td>
+                        <td>Full Name</td>
+                        <td>Registered Date</td>
+                        <td>Control</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <a href="#" class="btn btn-success">Edit</a>
+                            <a href="#" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    <?php }elseif($do == 'Add'){ ?>
 
             <h1 class="text-center mt-5">Add New Member</h1>
             <div class="container">
