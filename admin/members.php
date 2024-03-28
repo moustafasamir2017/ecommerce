@@ -165,7 +165,9 @@ if(isset($_SESSION['Username'])){
                 }
 
             }else{
-                echo "You Can't view page directly";
+                //echo "You Can't view page directly";
+                $errorMsg = "You Can't view page directly";
+                redirectHome($errorMsg,6);
             }
 
             echo "</div>";
@@ -278,7 +280,9 @@ if(isset($_SESSION['Username'])){
             }
 
         }else{
-            echo "You Can't view page directly";
+                //echo "You Can't view page directly";
+                $errorMsg = "You Can't view page directly";
+                redirectHome($errorMsg,6);
         }
 
         echo "</div>";
@@ -301,7 +305,9 @@ if(isset($_SESSION['Username'])){
                 $stmt->execute();
                 echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Deleted' . "</div>";
             }else{
-                echo "member with that id is not exist";
+                //echo "member with that id is not exist";
+                $errorMsg = "member with that id is not exist";
+                redirectHome($errorMsg,6);
             }
         echo "</div>";
     }
