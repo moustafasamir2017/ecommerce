@@ -27,8 +27,24 @@ body{background-color: #f4f4f4;}
     font-size: 20px;
 }
 
+.btn {
+    box-shadow: 0 3px 10px #ccc;
+}
+
+.main-table{
+    box-shadow: 0 3px 10px #ccc;
+}
+
 .main-table tr:first-child td{
     background-color: #333;
     color: #fff;
     text-align: center;
+}
+
+.main-table td{
+    vertical-align: middle;
+}
+
+.main-table td .btn{
+    padding: 3px 10px;
 }

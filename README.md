@@ -32,3 +32,4 @@ Progress Videos :
 30- Done fill table data from database  
 31- Done Delete member from database  
 32- Done redirect function if error at functions 
+33- Done some table style  
