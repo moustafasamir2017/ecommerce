@@ -51,7 +51,7 @@ if(isset($_SESSION['Username'])){
                                 echo "<td>".'date'."</td>";
                                 echo "<td>
                                 <a href='members.php?do=Edit&userid=".$row['UserID']."' class='btn btn-success'>Edit</a>
-                                <a href='#' class='btn btn-danger'>Delete</a>
+                                <a href='members.php?do=Delete&userid=".$row['UserID']."' class='btn btn-danger confirm'>Delete</a>
                                 </td>";
                             echo "</tr>";
                         }
@@ -283,6 +283,27 @@ if(isset($_SESSION['Username'])){
 
         echo "</div>";
 
+    }elseif($do == 'Delete'){
+        echo "<h1 class='text-center'>Update Member</h1>";
+        echo "<div class='container'>";
+            // check userId and is numeric
+            $userid = isset($_GET['userid']) && is_numeric( $_GET['userid']) ? intval($_GET['userid']) : 0;
+            // select data depend on id
+            $stmt = $con->prepare("SELECT * FROM users WHERE UserID = ? LIMIT 1");
+            // excute query
+            $stmt->execute(array($userid));
+            // row count to check result
+            $count = $stmt->rowCount();
+            // show for if id exist
+            if($count > 0){
+                $stmt = $con->prepare("DELETE FROM users WHERE UserID =:zuser");
+                $stmt->bindParam(":zuser",$userid);
+                $stmt->execute();
+                echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Deleted' . "</div>";
+            }else{
+                echo "member with that id is not exist";
+            }
+        echo "</div>";
     }
 
 /** End Page Code */
