@@ -30,3 +30,5 @@ Progress Videos :
 28- Done Add members to database from form add member  
 29- Done Draw table members  
 30- Done fill table data from database  
+31- Done Delete member from database  
+32- Done redirect function if error at functions 
