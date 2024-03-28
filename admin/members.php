@@ -19,7 +19,15 @@ if(isset($_SESSION['Username'])){
 /** Begin Page Code */
     $do = isset($_GET['do']) ? $_GET['do'] : 'Manage' ;
     
-    if($do == 'Manage'){ ?>
+    if($do == 'Manage'){
+        
+        // Select all users except admin
+        $stmt = $con->prepare("SELECT * FROM users WHERE GroupID != 1");
+        // excute statememnt
+        $stmt->execute();
+        // assign to variable
+        $rows = $stmt->fetchAll();
+        ?>
         <h1 class="text-center">Manage Members</h1>
         <div class="container">
             <a href='members.php?do=Add' class="btn btn-primary"><i class="fa fa-plus"></i>Add New Member</a>
@@ -33,7 +41,22 @@ if(isset($_SESSION['Username'])){
                         <td>Registered Date</td>
                         <td>Control</td>
                     </tr>
-                    <tr>
+                    <?php 
+                        foreach($rows as $row){
+                            echo "<tr>";
+                                echo "<td>".$row['UserID']."</td>";
+                                echo "<td>".$row['Username']."</td>";
+                                echo "<td>".$row['Email']."</td>";
+                                echo "<td>".$row['FullName']."</td>";
+                                echo "<td>".'date'."</td>";
+                                echo "<td>
+                                <a href='members.php?do=Edit&userid=".$row['UserID']."' class='btn btn-success'>Edit</a>
+                                <a href='#' class='btn btn-danger'>Delete</a>
+                                </td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                    <!-- <tr>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -43,7 +66,7 @@ if(isset($_SESSION['Username'])){
                             <a href="#" class="btn btn-success">Edit</a>
                             <a href="#" class="btn btn-danger">Delete</a>
                         </td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
         </div>
