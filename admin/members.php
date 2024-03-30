@@ -180,8 +180,8 @@ if(isset($_SESSION['Username'])){
 
             }else{
                 //echo "You Can't view page directly";
-                $errorMsg = "You Can't view page directly";
-                redirectHome($errorMsg,6);
+                $theMsg = "<div class='alert alert-danger'>You Can't view page directly</div>";
+                redirectHome($theMsg,'back');
             }
 
             echo "</div>";
@@ -289,8 +289,8 @@ if(isset($_SESSION['Username'])){
                 // Udate Database
                 $stmt = $con->prepare("UPDATE users SET Username = ?, Email = ?, FullName = ? , Password = ? WHERE UserID = ?");
                 $stmt->execute(array($user,$email,$name,$pass,$id));
-
-                echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Updated' . "</div>";
+                $theMsg = "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Updated' . "</div>";
+                redirectHome($theMsg,'back');
             }
 
         }else{
