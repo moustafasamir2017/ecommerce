@@ -163,7 +163,8 @@ if(isset($_SESSION['Username'])){
 
                     if($check == 1){
 
-                        echo "Sorry this usrer is exist";
+                        $theMsg = "<div class='alert alert-danger'>Sorry this usrer is exist</div>";
+                        redirectHome($theMsg,'back');
 
                     }else{
 
@@ -309,13 +310,18 @@ if(isset($_SESSION['Username'])){
             // check userId and is numeric
             $userid = isset($_GET['userid']) && is_numeric( $_GET['userid']) ? intval($_GET['userid']) : 0;
             // select data depend on id
-            $stmt = $con->prepare("SELECT * FROM users WHERE UserID = ? LIMIT 1");
+            // old $stmt = $con->prepare("SELECT * FROM users WHERE UserID = ? LIMIT 1");
+            
+            
             // excute query
-            $stmt->execute(array($userid));
+            // old $stmt->execute(array($userid));
             // row count to check result
-            $count = $stmt->rowCount();
+            // old $count = $stmt->rowCount();
+
+            // new
+            $check = checkItem('userid','users',$userid);
             // show for if id exist
-            if($count > 0){
+            if($check > 0){
                 $stmt = $con->prepare("DELETE FROM users WHERE UserID =:zuser");
                 $stmt->bindParam(":zuser",$userid);
                 $stmt->execute();
