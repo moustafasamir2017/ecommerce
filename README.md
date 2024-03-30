@@ -1,13 +1,13 @@
 # Ecommerce Course El Zero
 Progress Videos :  
-01- Done  
-02- Done  
-03- Done  
-04- Done  
-05- Done  
-06- Done  
-07- Done  
-08- Done  
+01- Done Intro about course
+02- Done what u need to that course
+03- Done simple analysis
+04- Done create structure
+05- Done include files
+06- Done adding tools and libs
+07- Done create init.php 
+08- Done test languages files
 09- Done my sql database created  
 10- Done database connection  
 11- Done form login html  
@@ -37,4 +37,4 @@ Progress Videos :
 35- Done function redirect home modify to v2  
 36- Done apply redirect to all conditions at members page  
 37- Done adding Date to members table  
-38- Done Cleaning Members Page  - End Members Page
+38- Done Cleaning Members Page  - End Members Page  
