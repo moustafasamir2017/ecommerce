@@ -34,3 +34,4 @@ Progress Videos :
 32- Done redirect function if error at functions 
 33- Done members page some table style  
 34- Done members check if user exist - function  
+35- Done function redirect home modify to v2  
