@@ -33,3 +33,4 @@ Progress Videos :
 31- Done Delete member from database  
 32- Done redirect function if error at functions 
 33- Done members page some table style  
+34- Done members check if user exist - function  

@@ -20,7 +20,7 @@ if(isset($_SESSION['Username'])){
     $do = isset($_GET['do']) ? $_GET['do'] : 'Manage' ;
     
     if($do == 'Manage'){
-        
+
         // Select all users except admin
         $stmt = $con->prepare("SELECT * FROM users WHERE GroupID != 1");
         // excute statememnt
@@ -157,11 +157,25 @@ if(isset($_SESSION['Username'])){
 
                 // if no errors then process to update
                 if(empty($formErrors)){
-                    // insert user info Database
-                    $stmt = $con->prepare("INSERT INTO users(Username,Password,Email,FullName) VALUES(:v_user,:v_pass,:v_mail,:v_name) ");
-                    $stmt->execute(array('v_user' => $user,'v_pass' => $hashPass,'v_mail' => $email,'v_name' => $name));
 
-                    echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Inserted' . "</div>";
+                    // check if user exist in database
+                    $check = checkItem("Username","users",$user);
+
+                    if($check == 1){
+
+                        echo "Sorry this usrer is exist";
+
+                    }else{
+
+                        // insert user info Database
+                        $stmt = $con->prepare("INSERT INTO users(Username,Password,Email,FullName) VALUES(:v_user,:v_pass,:v_mail,:v_name) ");
+                        $stmt->execute(array('v_user' => $user,'v_pass' => $hashPass,'v_mail' => $email,'v_name' => $name));
+
+                        echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Inserted' . "</div>";
+
+                    }
+
+
                 }
 
             }else{
