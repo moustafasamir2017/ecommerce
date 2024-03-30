@@ -48,7 +48,7 @@ if(isset($_SESSION['Username'])){
                                 echo "<td>".$row['Username']."</td>";
                                 echo "<td>".$row['Email']."</td>";
                                 echo "<td>".$row['FullName']."</td>";
-                                echo "<td>".'date'."</td>";
+                                echo "<td>".$row['Date']."</td>";
                                 echo "<td>
                                 <a href='members.php?do=Edit&userid=".$row['UserID']."' class='btn btn-success'><i class='fa fa-edit'></i> Edit</a>
                                 <a href='members.php?do=Delete&userid=".$row['UserID']."' class='btn btn-danger confirm'><i class='fa fa-trash'></i> Delete</a>
@@ -168,7 +168,7 @@ if(isset($_SESSION['Username'])){
                     }else{
 
                         // insert user info Database
-                        $stmt = $con->prepare("INSERT INTO users(Username,Password,Email,FullName) VALUES(:v_user,:v_pass,:v_mail,:v_name) ");
+                        $stmt = $con->prepare("INSERT INTO users(Username,Password,Email,FullName,Date) VALUES(:v_user,:v_pass,:v_mail,:v_name, now()) ");
                         $stmt->execute(array('v_user' => $user,'v_pass' => $hashPass,'v_mail' => $email,'v_name' => $name));
 
                         $theMsg = "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Inserted' . "</div>";

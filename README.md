@@ -36,3 +36,4 @@ Progress Videos :
 34- Done members check if user exist - function  
 35- Done function redirect home modify to v2  
 36- Done apply redirect to all conditions at members page  
+37- Done adding Date to members table  
