@@ -37,4 +37,4 @@ Progress Videos :
 35- Done function redirect home modify to v2  
 36- Done apply redirect to all conditions at members page  
 37- Done adding Date to members table  
-38- Done Cleaning Members Page  
+38- Done Cleaning Members Page  - End Members Page
