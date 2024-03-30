@@ -171,7 +171,8 @@ if(isset($_SESSION['Username'])){
                         $stmt = $con->prepare("INSERT INTO users(Username,Password,Email,FullName) VALUES(:v_user,:v_pass,:v_mail,:v_name) ");
                         $stmt->execute(array('v_user' => $user,'v_pass' => $hashPass,'v_mail' => $email,'v_name' => $name));
 
-                        echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Inserted' . "</div>";
+                        $theMsg = "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Inserted' . "</div>";
+                        redirectHome($theMsg,'back');
 
                     }
 
@@ -243,7 +244,8 @@ if(isset($_SESSION['Username'])){
             <?php 
             // else if no id show error
             }else{
-                echo "No Member Id Found";
+                $theMsg = "<div class='alert alert-danger'>No Member Id Found</div>";
+                redirectHome($theMsg,'back');
             }
             ?>
 
@@ -295,8 +297,8 @@ if(isset($_SESSION['Username'])){
 
         }else{
                 //echo "You Can't view page directly";
-                $errorMsg = "You Can't view page directly";
-                redirectHome($errorMsg,6);
+                $theMsg = "<div class='alert alert-danger'>You Can't view page directly</div>";
+                redirectHome($theMsg);
         }
 
         echo "</div>";
@@ -317,11 +319,12 @@ if(isset($_SESSION['Username'])){
                 $stmt = $con->prepare("DELETE FROM users WHERE UserID =:zuser");
                 $stmt->bindParam(":zuser",$userid);
                 $stmt->execute();
-                echo "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Deleted' . "</div>";
+                $theMsg = "<div class='alert alert-success'>".$stmt->rowCount(). ' - Recored Deleted' . "</div>";
+                redirectHome($theMsg,'back');
             }else{
                 //echo "member with that id is not exist";
-                $errorMsg = "member with that id is not exist";
-                redirectHome($errorMsg,6);
+                $theMsg = "<div class='alert alert-danger'>member with that id is not exist</div>";
+                redirectHome($theMsg);
             }
         echo "</div>";
     }
