@@ -48,3 +48,17 @@ body{background-color: #f4f4f4;}
 .main-table td .btn{
     padding: 3px 10px;
 }
+
+/**** Dashboard ******/
+
+.home-stats .stat{
+    background: #eee;
+    border: 1px solid #ccc;
+    padding: 20px;font-size: 15px;
+}
+
+.home-stats .stat span{
+    display: block;font-size: 50px;
+}
+
+.latest{margin-top: 30px;}
